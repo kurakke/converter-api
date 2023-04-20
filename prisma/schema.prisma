@@ -9,3 +9,41 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  email     String      @unique
+  name      String
+  textGroup TextGroup[]
+}
+
+model TextGroup {
+  id            Int             @id @default(autoincrement())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  name          String
+  text          Text[]
+  convertedText ConvertedText[]
+  User          User            @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+model Text {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  text        String
+  TextGroup   TextGroup @relation(fields: [textGroupId], references: [id])
+  textGroupId Int
+}
+
+model ConvertedText {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  text        String
+  TextGroup   TextGroup @relation(fields: [textGroupId], references: [id])
+  textGroupId Int
+}
