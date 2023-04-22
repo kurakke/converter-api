@@ -9,13 +9,8 @@ export const getById = async (req: Request, res: Response) => {
         where: {
             id: usesrId,
         },
-        includes: {
-            textGroups: {
-                include: {
-                    texts: true,
-                    convertedTexts: true,
-                },
-            }
+        include: {
+            text: true,
         },
     });
     res.json(user);
