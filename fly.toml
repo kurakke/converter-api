@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for zinbee on 2023-04-22T10:42:27+09:00
+# fly.toml app configuration file generated for zinbee on 2023-04-22T14:29:12+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -10,13 +10,11 @@ primary_region = "nrt"
 processes = []
 
 [build]
-  builder = "heroku/buildpacks:20"
 
 [env]
   PORT = "8080"
 
 [experimental]
-  cmd = "npm start"
   auto_rollback = true
 
 [[services]]
@@ -44,4 +42,3 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
-  
