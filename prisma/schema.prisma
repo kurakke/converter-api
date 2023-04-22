@@ -12,19 +12,18 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  name      String
-  text      Text[]
+  id    String @id @unique @default(uuid())
+  email String 
+  name  String
+  text  Text[]
 }
 
 model Text {
-  id            Int    @id @default(autoincrement())
+  id            String @id @default(uuid())
   text          String
   convertedText String
   User          User   @relation(fields: [userId], references: [id])
-  userId        Int
+  userId        String
 
   @@index([userId])
 }

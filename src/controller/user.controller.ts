@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 export const getById = async (req: Request, res: Response) => {
     const { usesrId } = req.body;
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
         where: {
             id: usesrId,
         },
@@ -14,7 +14,6 @@ export const getById = async (req: Request, res: Response) => {
         },
     });
     res.json(user);
-
 }
 
 export const create = async (req: Request, res: Response) => {
